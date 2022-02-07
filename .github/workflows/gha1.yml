@@ -16,4 +16,4 @@ jobs:
         run: echo "The last run_id is ${{ steps.get_last_run_id.outputs.last_run_id }}"
       - name: Print last run log
         id: print_last_run_log
-        run: echo "`gh run view ${{ steps/get_last_run_id.outputs.last_run_id }}`"
+        run: echo "`gh run view ${{ steps.get_last_run_id.outputs.last_run_id }}`"
