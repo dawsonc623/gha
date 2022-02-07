@@ -1,0 +1,7 @@
+name: GitHub Actions 1
+on: [push]
+jobs:
+  Try-Out-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      run: echo "I did the thing!"
