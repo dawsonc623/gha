@@ -10,9 +10,9 @@ jobs:
       - name: Get the last run time
         run: |
           lastRunTime="$(gh run list -q '.[1].createdAt' --json createdAt)"
-          echo 'LAST_RUN_TIME='$lastRunTime >> $GITHUB_ENV
+          echo 'LAST_BUILD_TIMESTAMP='$lastRunTime >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Print the last run time
-        run: echo "The last run time is $LAST_RUN_TIME"
+        run: yarn doit

@@ -1,0 +1,13 @@
+{
+  "name": "gha",
+  "version": "0.1.0",
+  "description": "GHA Playground",
+  "main": "index.js",
+  "repository": "https://github.com/dawsonc623/gha.git",
+  "author": "Cyle Ven Dawson <dawsonc623@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "doit": "node index.js"
+  }
+}
