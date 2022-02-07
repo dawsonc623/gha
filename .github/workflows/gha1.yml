@@ -10,14 +10,19 @@ jobs:
         #   echo 'LAST_RUN_ID<<EOF' >> $GITHUB_ENV
         #   gh run list -q ".[0].databaseId" --json databaseId >> $GITHUB_ENV
         #   echo 'EOF' >> $GITHUB_ENV
-        run: echo "::set-output name=last_run_id:`gh run list -q ".[0].databaseId" --json databaseId`"
+        # run: echo "::set-output name=last_run_id:`gh run list -q ".[0].databaseId" --json databaseId`"
+        run: |
+          lastRunId="$(gh run list -q ".[0].databaseId" --json databaseId)"
+          echo 'LAST_RUN_ID='$lastRunId' >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Print the last run_id
         id: print_last_run_id
-        run: echo "The last run_id is ${{ steps.get_last_run_id.outputs.last_run_id }}"
+        run: echo "The last run_id is $LAST_RUN_ID"
       - name: Print last run log
         id: print_last_run_log
-        run: echo "`gh run view ${{ steps.get_last_run_id.outputs.last_run_id }}`"
+        # run: echo "`gh run view ${{ steps.get_last_run_id.outputs.last_run_id }}`"
+        run:
+          lastRunLogs=$(gh run view $LAST_RUN_ID)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
