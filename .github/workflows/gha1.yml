@@ -4,4 +4,4 @@ jobs:
   Try-Out-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      run: echo "I did the thing!"
+      - run: echo "I did the thing!"
