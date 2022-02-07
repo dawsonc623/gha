@@ -7,27 +7,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Get the last run_id
-        id: get_last_run_id
-        # run: |
-        #   echo 'LAST_RUN_ID<<EOF' >> $GITHUB_ENV
-        #   gh run list -q ".[0].databaseId" --json databaseId >> $GITHUB_ENV
-        #   echo 'EOF' >> $GITHUB_ENV
-        # run: echo "::set-output name=last_run_id:`gh run list -q ".[0].databaseId" --json databaseId`"
+      - name: Get the last run time
         run: |
-          lastRunId="$(gh run list -q '.[1].databaseId' --json databaseId)"
-          echo 'LAST_RUN_ID='$lastRunId >> $GITHUB_ENV
+          lastRunTime="$(gh run list -q '.[1].createdAt' --json createdAt)"
+          echo 'LAST_RUN_TIME='$lastRunTime >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Print the last run_id
-        id: print_last_run_id
-        run: echo "The last run_id is $LAST_RUN_ID"
-
-      - name: Print last run log
-        id: print_last_run_log
-        # run: echo "`gh run view ${{ steps.get_last_run_id.outputs.last_run_id }}`"
-        run:
-          echo "`gh run view $LAST_RUN_ID`"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print the last run time
+        run: echo "The last run time is $LAST_RUN_TIME"
