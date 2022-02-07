@@ -28,6 +28,6 @@ jobs:
         id: print_last_run_log
         # run: echo "`gh run view ${{ steps.get_last_run_id.outputs.last_run_id }}`"
         run:
-          lastRunLogs=$(gh run view $LAST_RUN_ID)
+          echo "`gh run view $LAST_RUN_ID`"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
