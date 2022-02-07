@@ -15,7 +15,7 @@ jobs:
         #   echo 'EOF' >> $GITHUB_ENV
         # run: echo "::set-output name=last_run_id:`gh run list -q ".[0].databaseId" --json databaseId`"
         run: |
-          lastRunId="$(gh run list -q '.[0].databaseId' --json databaseId)"
+          lastRunId="$(gh run list -q '.[1].databaseId' --json databaseId)"
           echo 'LAST_RUN_ID='$lastRunId >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
