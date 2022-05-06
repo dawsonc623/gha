@@ -9,7 +9,7 @@ jobs:
 
       - name: Get the last run time
         run: |
-          lastRunTime="$(gh run list -q '[.[] | select(.conclusion == "success").createdAt] | .[1]' --json conclusion,createdAt)"
+          lastRunTime="$(gh run list -q '[.[] | select(.conclusion == "success").createdAt] | .[0]' --json conclusion,createdAt)"
           echo 'LAST_BUILD_TIMESTAMP='$lastRunTime >> $GITHUB_ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
